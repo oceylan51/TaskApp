@@ -1,0 +1,37 @@
+﻿@model AddTaskModel
+<form asp-controller="Task" asp-action="AddTask" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="mt-2">Content</label>
+                </div>
+                <div class="col-md-9">
+                    <input  asp-for="TaskContent" type="text" class="form-control w-50" />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <label class="mt-2">State Of Urgency</label>
+                </div>
+                <div class="col-md-9">
+                    <input asp-for="TaskStateOfUrgency" type="text" class="form-control w-50" />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <label class="mt-2">Finish Date</label>
+                </div>
+                <div class="col-md-9">
+                    <input asp-for="TaskFinishDate" type="date" min="1997-01-01" max="2030-12-31" class="form-control w-50" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-2 col-md-4 mt-4">
+                    <button type="submit" class="btn btn-sm btn-outline-success w-100">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

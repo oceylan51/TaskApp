@@ -1,0 +1,17 @@
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\TaskApp.Bussines.deps.json
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\TaskApp.Bussines.dll
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\ref\TaskApp.Bussines.dll
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\TaskApp.Bussines.pdb
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.csproj.AssemblyReference.cache
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.AssemblyInfoInputs.cache
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.AssemblyInfo.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.csproj.CoreCompileInputs.cache
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.dll
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\ref\TaskApp.Bussines.dll
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.pdb
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\TaskApp.Data.dll
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\TaskApp.Entity.dll
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\TaskApp.Data.pdb
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\bin\Debug\net5.0\TaskApp.Entity.pdb
+C:\Users\osman\Desktop\TaskApp\TaskApp.Bussines\obj\Debug\net5.0\TaskApp.Bussines.csproj.CopyComplete
