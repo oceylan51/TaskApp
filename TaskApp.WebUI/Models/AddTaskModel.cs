@@ -15,6 +15,8 @@ namespace TaskApp.WebUI.Models
         public string TaskStateOfUrgency { get; set; }
         [Required(ErrorMessage = "Finish date cannot be left blank")]
         public DateTime TaskFinishDate { get; set; }
+        [Required(ErrorMessage = "Description cannot be left blank")]
+        public string TaskDescription { get; set; }
         public bool IsDelete { get; set; }
 
     }

@@ -9,6 +9,9 @@ namespace TaskApp.Bussines.Abstract
 {
     public interface ITaskService : IRepositoryService<Entity.Task>
     {
+        List<Entity.Task> DeletedTaskList();
+        List<Entity.Task> NotDeletedTaskList();
+        void AddDeletedBack(int id);
         void TaskDelete(Entity.Task task);
     }
 }

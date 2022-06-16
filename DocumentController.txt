@@ -1,0 +1,131 @@
+//public IActionResult DocumentEdit(int id)
+        //{
+        //    var model = _documentService.GetById(id);
+        //    AddDocumentModel document = new AddDocumentModel()
+        //    {
+        //        DocumentId = model.DocumentId,
+        //        DocumentTitle = model.DocumentTitle,
+        //        ImageUrl = model.ImageUrl.Substring(0, model.ImageUrl.IndexOf(".")),
+        //        IsDelete = model.IsDelete
+        //    };
+        //    return View(document);
+        //}
+        //[HttpPost]
+        //public IActionResult DocumentEdit(IFormFile file, AddDocumentModel model)
+        //{
+        //    if (file == null)
+        //    {
+        //        Document document = new Document()
+        //        {
+        //            DocumentId = model.DocumentId,
+        //            ImageUrl = model.ImageUrl + ".png",
+        //            DocumentTitle = model.DocumentTitle,
+        //            IsDelete = model.IsDelete
+        //        };
+        //        _documentService.Update(document);
+        //        return RedirectToAction("Index");
+        //    }
+        //    if (file != null && file.ContentType == "image/png")
+        //    {
+        //        string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/images/{model.ImageUrl}.png");
+        //        var stream = new FileStream(path, FileMode.Create);
+        //        file.CopyTo(stream);
+        //        Document document = new Document()
+        //        {
+        //            DocumentId = model.DocumentId,
+        //            ImageUrl = model.ImageUrl + ".png",
+        //            DocumentTitle = model.DocumentTitle,
+        //            IsDelete = model.IsDelete
+        //        };
+        //        _documentService.Update(document);
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.Result = "Fill in the information completely";
+        //    return View();
+        //}
+
+
+
+
+CSHTML
+@model AddDocumentModel
+<div class="row">
+    <div class="col-md-6">
+        <div style="font-size:14pt; font-weight:bold; color:red; margin-bottom:14px;"> Valid Document</div>
+        <div class="valid-document">
+            @{ string url = Model.ImageUrl + ".png";}
+            <img src=~/images/@url class="container-fluid" />
+        </div>
+    </div>
+    <div class="col-md-6 d-none">
+        <div style="font-size:14pt; font-weight:bold; color:red; margin-bottom:14px;"> New Document</div>
+        <div class="valid-document w-100">
+            <img src="" class="container-fluid" />
+        </div>
+    </div>
+</div>
+
+<form asp-controller="Document" asp-action="DocumentEdit" method="post" enctype="multipart/form-data" >
+    @if (ViewBag.Result != null)
+    {
+        <span class="text-danger">@ViewBag.Result</span>
+    }
+    <div class="row d-none">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Document Name</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" asp-for="ImageUrl" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Document Title</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" asp-for="DocumentTitle" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Document Is Delete</label>
+                </div>
+                <div class="col-md-9">
+                    <select asp-for="IsDelete" class="form-control">
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="mt-2">Document Select</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="file" id="selected-image" name="file" class="container-fluid" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" offset-md-2 col-md-3 mt-2 ">
+                <input type="hidden" asp-for="DocumentId" />
+                <button class="w-100 mt-1 btn-primary" type="submit">Add</button>
+            </div>
+        </div>
+    </div>
+
+</form>

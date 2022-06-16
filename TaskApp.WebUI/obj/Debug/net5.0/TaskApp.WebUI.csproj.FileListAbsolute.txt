@@ -80,3 +80,16 @@ C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Task\I
 C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Task\AddTask.cshtml.g.cs
 C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Task\TaskEdit.cshtml.g.cs
 C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Document\AddDocument.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Document\Index.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Document\DeletedDocumentList.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Task\DeletedTaskList.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\TaskAssignment\Index.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\TaskAssignment\AddTask.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\TaskAssignment\ImageShow.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Shared\_nullLayout.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Account\ConfirmEmail.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\Account\AccessDenied.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\TaskAssignment\TaskAssignmentDetails.cshtml.g.cs
+C:\Users\osman\Desktop\TaskApp\TaskApp.WebUI\obj\Debug\net5.0\Razor\Views\TaskAssignment\TaskAssignmentFinish.cshtml.g.cs

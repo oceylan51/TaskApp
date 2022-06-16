@@ -1,27 +1,30 @@
 ﻿@using TaskApp.Entity
 @model List<TaskApp.Entity.Task>
 
-    <h6 class="display-4">Tasks List</h6>
-    <hr />
-    <table class="table table-sm">
-        <tr class="table-primary">
-            <td>Content</td>
-            <td>State Of Urgency</td>
-            <td>Finish Date</td>
-            <td>Is Delete</td>
-            <td>Actions</td>
+<h6 class="display-4">Tasks List</h6>
+<hr />
+<a class="btn btn-sm btn-danger mb-3" asp-controller="Task" asp-action="DeletedTaskList">Deleted Task List</a>
+<table class="table table-sm">
+    <tr class="table-primary">
+        <td>Content</td>
+        <td>State Of Urgency</td>
+        <td>Finish Date</td>
+        <td>Description</td>
+        <td>Is Delete</td>
+        <td>Actions</td>
+    </tr>
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.TaskContent</td>
+            <td>@task.TaskStateOfUrgency</td>
+            <td>@task.TaskFinishDate</td>
+            <td>@task.TaskDescription</td>
+            <td>@task.IsDelete</td>
+            <td>
+                <a class="btn btn-sm btn-warning" asp-controller="Task" asp-action="TaskEdit" asp-route-id="@task.TaskId">Edit</a>
+                <a class="btn btn-sm btn-danger" asp-controller="Task" asp-action="TaskDelete" asp-route-id="@task.TaskId">Delete</a>
+            </td>
         </tr>
-        @foreach (var task in Model)
-        {
-            <tr>
-                <td>@task.TaskContent</td>
-                <td>@task.TaskStateOfUrgency</td>
-                <td>@task.TaskFinishDate</td>
-                <td>@task.IsDelete</td>
-                <td>
-                    <a class="btn btn-sm btn-warning" asp-controller="Task" asp-action="TaskEdit" asp-route-id="@task.TaskId">Edit</a>
-                    <a class="btn btn-sm btn-danger" asp-controller="Task" asp-action="TaskDelete" asp-route-id="@task.TaskId">Delete</a>
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>

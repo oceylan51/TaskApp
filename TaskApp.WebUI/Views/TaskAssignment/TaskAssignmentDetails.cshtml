@@ -1,0 +1,64 @@
+﻿@model TaskApp.Entity.Task
+<form asp-controller="Task" asp-action="TaskEdit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="mt-2">Content</label>
+                </div>
+                <div class="col-md-9">
+                    <input disabled asp-for="TaskContent" type="text" class="form-control w-75" />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <label class="mt-2">State Of Urgency</label>
+                </div>
+                <div class="col-md-9">
+                    <input disabled asp-for="TaskStateOfUrgency" type="text" class="form-control w-75" />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <label class="mt-2">Finish Date</label>
+                </div>
+                <div class="col-md-9">
+                    <input disabled asp-for="TaskFinishDate" type="date" min="1997-01-01" max="2030-12-31" class="form-control w-75" />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <label class="mt-2">Description</label>
+                </div>
+                <div class="col-md-9">
+                    <textarea disabled asp-for="TaskDescription" class="form-control w-75"></textarea>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <label class="mt-2">Is Delete</label>
+                </div>
+                <div class="col-md-9">
+                    <select disabled asp-for="IsDelete" class="form-control ">
+                        @*True Olmasına Rağmen False Seçili Geliyor*@
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    @foreach (var document in ViewBag.Documents)
+    {
+        if (document.TaskId == Model.TaskId)
+        {
+            <div class="row mt-4 mb-5">
+                <div class="col-md-6">
+                    <a target="_blank" asp-controller="TaskAssignment" asp-action="ImageShow" asp-route-id="@document.Document.DocumentId"><img src="~/images/@document.Document.ImageUrl"   width="300" alt="Alternate Text" /></a>
+                </div>
+            </div>
+        }
+    }
+</form>
+

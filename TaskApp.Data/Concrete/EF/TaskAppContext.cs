@@ -13,6 +13,7 @@ namespace TaskApp.Data.Concrete.EF
         public DbSet<Document> Documents { get; set; }
         public DbSet<Entity.Task> Tasks { get; set; }
         public DbSet<TaskAssignment> TaskAssignments { get; set; }
+        public DbSet<TaskWithDocument> TaskWithDocuments { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=TaskApp");

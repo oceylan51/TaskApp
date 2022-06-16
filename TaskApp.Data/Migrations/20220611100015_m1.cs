@@ -14,7 +14,8 @@ namespace TaskApp.Data.Migrations
                     TaskAssignmentId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TaskId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<string>(type: "TEXT", nullable: true)
+                    UserId = table.Column<string>(type: "TEXT", nullable: true),
+                    IsDelete = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,7 +30,8 @@ namespace TaskApp.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     TaskContent = table.Column<string>(type: "TEXT", nullable: true),
                     TaskStateOfUrgency = table.Column<string>(type: "TEXT", nullable: true),
-                    TaskFinishDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    TaskFinishDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IsDelete = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,8 +44,9 @@ namespace TaskApp.Data.Migrations
                 {
                     DocumentId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TaskId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true)
+                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true),
+                    IsDelete = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TaskId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,7 +56,7 @@ namespace TaskApp.Data.Migrations
                         column: x => x.TaskId,
                         principalTable: "Tasks",
                         principalColumn: "TaskId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

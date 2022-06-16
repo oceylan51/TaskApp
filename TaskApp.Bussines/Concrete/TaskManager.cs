@@ -23,6 +23,14 @@ namespace TaskApp.Bussines.Concrete
             _taskRepository.Create(entity);
         }
 
+        public List<Entity.Task> DeletedTaskList()
+        {
+            return _taskRepository.DeletedTaskList();
+        }
+        public List<Entity.Task> NotDeletedTaskList()
+        {
+            return _taskRepository.NotDeletedTaskList();
+        }
         public List<Entity.Task> GetAll()
         {
             return _taskRepository.GetAll();
@@ -41,6 +49,11 @@ namespace TaskApp.Bussines.Concrete
         public void Update(Entity.Task entity)
         {
             _taskRepository.Update(entity);
+        }
+
+        public void AddDeletedBack(int id)
+        {
+            _taskRepository.AddDeletedBack(id);
         }
     }
 }

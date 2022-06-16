@@ -1,0 +1,24 @@
+﻿@model List<Document>
+
+<h6 class="display-4">Documents List</h6>
+<a class="btn btn-sm btn-danger mb-3" asp-controller="Document" asp-action="DeletedDocumentList">Deleted Document</a>
+<hr />
+<table class="table table-sm table-primary mb-5">
+    <tr>
+        <td>Document Image</td>
+        <td>Document Title</td>
+        <td>Is Delete</td>
+        <td>Actions</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="~/images/@item.ImageUrl" width="250" alt="Alternate Text" /></td>
+            <td>@item.DocumentTitle</td>
+            <td>@item.IsDelete</td>
+            <td>
+                <a asp-controller="Document" asp-action="DocumentDelete" asp-route-id="@item.DocumentId" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

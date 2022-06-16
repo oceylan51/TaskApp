@@ -9,5 +9,8 @@ namespace TaskApp.Data.Abstract
     public interface ITaskRepository : IRepository<Entity.Task>
     {
         void TaskDelete(Entity.Task task);
+        List<Entity.Task> DeletedTaskList();
+        List<Entity.Task> NotDeletedTaskList();
+        void AddDeletedBack(int id);
     }
 }

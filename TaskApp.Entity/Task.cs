@@ -10,10 +10,12 @@ namespace TaskApp.Entity
     {
         public int TaskId { get; set; }
         public string TaskContent { get; set; }
+        public string TaskDescription { get; set; }
         public string TaskStateOfUrgency { get; set; }
         public DateTime TaskFinishDate { get; set; }
-        public List<Document> Documents { get; set; }
+        public string InComingDescription { get; set; }
+        public DateTime InComingFinishDate { get; set; }
         public bool IsDelete { get; set; }
-
+        public List<TaskAssignment> TaskAssignments { get; set; }
     }
 }

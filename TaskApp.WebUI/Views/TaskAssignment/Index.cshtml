@@ -1,0 +1,93 @@
+﻿@model List<TaskAssignment>
+@if (Model.Count > 0)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <h6 class="display-4">My Task List</h6>
+        <hr />
+        <table class="table table-sm">
+            <tr>
+                <td>Content</td>
+                <td>State Of Urgency</td>
+                <td>Finish Date</td>
+                <td>Documents</td>
+                <td>In Coming Description</td>
+                <td>In Coming Document</td>
+                <td>In Coming Finishing Date</td>
+                <td>Actions</td>
+            </tr>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.Task.TaskContent</td>
+                    <td>@task.Task.TaskStateOfUrgency</td>
+                    <td>@task.Task.TaskFinishDate</td>
+                    <td>
+                        @foreach (var document in ViewBag.Documents)
+                        {
+                            if (document.TaskId == task.Task.TaskId && document.Document.AddedById == ViewBag.UserId)
+                            {
+                                <a target="_blank" asp-controller="TaskAssignment" asp-action="ImageShow" asp-route-id="@document.Document.DocumentId"><img src="~/images/@document.Document.ImageUrl" width="100" alt="Alternate Text" /></a>
+                            }
+                        }
+                    </td>
+                    <td>@task.Task.InComingDescription</td>
+                    <td>
+                        @foreach (var document in ViewBag.Documents)
+                        {
+                            if (document.TaskId == task.Task.TaskId && document.Document.AddedById == task.UserId)
+                            {
+                                <a target="_blank" asp-controller="TaskAssignment" asp-action="ImageShow" asp-route-id="@document.Document.DocumentId"><img src="~/images/@document.Document.ImageUrl" width="100" alt="Alternate Text" /></a>
+                            }
+                        }
+                    <td>@task.Task.InComingFinishDate</td>
+                    <td>
+                        <a asp-controller="TaskAssignment" asp-action="TaskAssignmentDetails" asp-route-id="@task.Task.TaskId" class="btn btn-sm btn-warning">Details</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h6 class="display-4">My Task List</h6>
+        <hr />
+        <table class="table table-sm">
+            <tr>
+                <td>Content</td>
+                <td>State Of Urgency</td>
+                <td>Finish Date</td>
+                <td>Documents</td>
+                <td>Actions</td>
+            </tr>
+            @foreach (var task in Model)
+            {
+                if (task.UserId == ViewBag.UserId)
+                {
+                    <tr>
+                        <td>@task.Task.TaskContent</td>
+                        <td>@task.Task.TaskStateOfUrgency</td>
+                        <td>@task.Task.TaskFinishDate</td>
+                        <td>
+                            @foreach (var document in ViewBag.Documents)
+                            {
+                                if (document.TaskId == task.Task.TaskId && document.Document.AddedById != task.UserId)
+                                {
+                                    <a target="_blank" asp-controller="TaskAssignment" asp-action="ImageShow" asp-route-id="@document.Document.DocumentId"><img src="~/images/@document.Document.ImageUrl" width="100" alt="Alternate Text" /></a>
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a asp-controller="TaskAssignment" asp-action="TaskAssignmentDetails" asp-route-id="@task.Task.TaskId" class="btn btn-sm btn-warning">Details</a>
+                            <a asp-controller="TaskAssignment" asp-action="TaskAssignmentFinish" asp-route-id="@task.Task.TaskId" class="btn btn-sm btn-info">Task Finishing</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+}
+else
+{
+    <h6 class="display-4">Your task is no</h6>
+}

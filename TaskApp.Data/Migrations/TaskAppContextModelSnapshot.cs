@@ -22,18 +22,19 @@ namespace TaskApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AddedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DocumentTitle")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TaskId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("DocumentId");
-
-                    b.HasIndex("TaskId");
 
                     b.ToTable("Documents");
                 });
@@ -44,10 +45,19 @@ namespace TaskApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("InComingDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("InComingFinishDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsDelete")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("TaskContent")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TaskDescription")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TaskFinishDate")
@@ -78,21 +88,60 @@ namespace TaskApp.Data.Migrations
 
                     b.HasKey("TaskAssignmentId");
 
+                    b.HasIndex("TaskId");
+
                     b.ToTable("TaskAssignments");
+                });
+
+            modelBuilder.Entity("TaskApp.Entity.TaskWithDocument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DocumentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentId");
+
+                    b.ToTable("TaskWithDocuments");
+                });
+
+            modelBuilder.Entity("TaskApp.Entity.TaskAssignment", b =>
+                {
+                    b.HasOne("TaskApp.Entity.Task", "Task")
+                        .WithMany("TaskAssignments")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+                });
+
+            modelBuilder.Entity("TaskApp.Entity.TaskWithDocument", b =>
+                {
+                    b.HasOne("TaskApp.Entity.Document", "Document")
+                        .WithMany("TaskWithDocuments")
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Document");
                 });
 
             modelBuilder.Entity("TaskApp.Entity.Document", b =>
                 {
-                    b.HasOne("TaskApp.Entity.Task", null)
-                        .WithMany("Documents")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("TaskWithDocuments");
                 });
 
             modelBuilder.Entity("TaskApp.Entity.Task", b =>
                 {
-                    b.Navigation("Documents");
+                    b.Navigation("TaskAssignments");
                 });
 #pragma warning restore 612, 618
         }

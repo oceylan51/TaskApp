@@ -9,8 +9,8 @@ using TaskApp.Data.Concrete.EF;
 namespace TaskApp.Data.Migrations
 {
     [DbContext(typeof(TaskAppContext))]
-    [Migration("20220610233232_m2")]
-    partial class m2
+    [Migration("20220613193057_mg3")]
+    partial class mg3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,13 +24,16 @@ namespace TaskApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DocumentTitle")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TaskId")
+                    b.Property<int?>("TaskId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("DocumentId");
@@ -83,13 +86,28 @@ namespace TaskApp.Data.Migrations
                     b.ToTable("TaskAssignments");
                 });
 
+            modelBuilder.Entity("TaskApp.Entity.TaskWithDocument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DocumentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TaskAssignmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaskWithDocuments");
+                });
+
             modelBuilder.Entity("TaskApp.Entity.Document", b =>
                 {
                     b.HasOne("TaskApp.Entity.Task", null)
                         .WithMany("Documents")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TaskId");
                 });
 
             modelBuilder.Entity("TaskApp.Entity.Task", b =>

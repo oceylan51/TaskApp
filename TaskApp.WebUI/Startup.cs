@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ using TaskApp.Bussines.Abstract;
 using TaskApp.Bussines.Concrete;
 using TaskApp.Data.Abstract;
 using TaskApp.Data.Concrete.EF;
+using TaskApp.WebUI.EmailServices;
 using TaskApp.WebUI.Identity;
 
 namespace TaskApp.WebUI
@@ -33,7 +35,37 @@ namespace TaskApp.WebUI
             services.AddDbContext<ApplicationContext>(options => options.UseSqlite("Data Source=TaskApp"));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
             services.AddScoped<ITaskRepository, EfCoreTaskRepository>();
+            services.AddScoped<IDocumentRepository, EfCoreDocumentRepository>();
+            services.AddScoped<ITaskAssignmentRepository, EfCoreTaskAssignmentRepository>();
+            services.AddScoped<ITaskWithDocumentRepository, EfCoreTaskWithDocumentRepository>();
             services.AddScoped<ITaskService, TaskManager>();
+            services.AddScoped<IDocumentService, DocumentManager>();
+            services.AddScoped<ITaskAssignmentService, TaskAssignmentManager>();
+            services.AddScoped<ITaskWithDocumentService, TaskWithDocumentManager>();
+
+            services.AddScoped<IEmailSender, SmtpEmailSender>(i => new SmtpEmailSender(
+                Configuration["EmailSender:Host"],
+                Configuration.GetValue<int>("EmailSender:Port"),
+                Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                Configuration["EmailSender:UserName"],
+                Configuration["EmailSender:Password"]
+                ));
+
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/account/login";
+                options.LogoutPath = "/account/logout";
+                options.AccessDeniedPath = "/account/accessdenied";
+                options.SlidingExpiration = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                options.Cookie = new CookieBuilder()
+                {
+                    HttpOnly = true,
+                    Name = "TaskAppCookie",
+                    SameSite = SameSiteMode.Strict
+                };
+            });
             services.AddControllersWithViews();
         }
 
@@ -59,6 +91,11 @@ namespace TaskApp.WebUI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "imageshow",
+                    pattern: "image-show",
+                    defaults: new { controller = "TaskAssignment", Action = "ImageShow" }
+                    );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

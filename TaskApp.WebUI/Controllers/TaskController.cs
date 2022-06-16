@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using TaskApp.WebUI.Models;
 
 namespace TaskApp.WebUI.Views.Home
 {
+    [Authorize]
     public class TaskController : Controller
     {
         private ITaskService _taskService;
@@ -16,14 +18,17 @@ namespace TaskApp.WebUI.Views.Home
         {
             _taskService = taskService;
         }
+        //Silinmemiş Taskleri Listeler
         public IActionResult Index()
         {
-            return View(_taskService.GetAll());
+            return View(_taskService.NotDeletedTaskList());
         }
+        //Yeni Task Eklemek Oluşturduğumuz View a göndermek için kullandığımız method
         public IActionResult AddTask()
         {
             return View();
         }
+        //Yeni Task ı Veri Tabanına Eklemek ve Tekrardan Index e Gönderdiğimiz Method
         [HttpPost]
         public IActionResult AddTask(AddTaskModel model)
         {
@@ -40,6 +45,7 @@ namespace TaskApp.WebUI.Views.Home
             }
             return View(model);
         }
+        //Düzenleyeceğimiz Task in Verilerini View a gönderdiğimiz Method
         public IActionResult TaskEdit(int id)
         {
             var task = _taskService.GetById(id);
@@ -52,6 +58,7 @@ namespace TaskApp.WebUI.Views.Home
             };
             return View(model);
         }
+        //Viewdan güncel bilgileri aldığımız ve veri tabanına kayıt işlemini gerçekleştirdiğimiz method.
         [HttpPost]
         public IActionResult TaskEdit(AddTaskModel task)
         {
@@ -73,6 +80,15 @@ namespace TaskApp.WebUI.Views.Home
         public IActionResult TaskDelete(int id)
         {
             _taskService.TaskDelete(_taskService.GetById(id));
+            return RedirectToAction("Index");
+        }
+        public IActionResult DeletedTaskList()
+        {
+            return View(_taskService.DeletedTaskList());
+        }
+        public IActionResult AddDeletedBack(int id)
+        {
+            _taskService.AddDeletedBack(id);
             return RedirectToAction("Index");
         }
     }
