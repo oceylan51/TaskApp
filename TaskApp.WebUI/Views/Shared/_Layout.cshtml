@@ -22,30 +22,32 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-
-                        @if (User.IsInRole("Admin"))
+                        @if (User.Identity.IsAuthenticated)
                         {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index">Task List</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="AddTask">Add Task</a>
+                                </li>
+                            }
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index">Task List</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Document" asp-action="Index">Documents List</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="AddTask">Add Task</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Document" asp-action="AddDocument">Add Documnent</a>
                             </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Document" asp-action="Index">Documents List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Document" asp-action="AddDocument">Add Documnent</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TaskAssignment" asp-action="Index">Task Assignment</a>
-                        </li>
-                        @if (User.IsInRole("Admin"))
-                        {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="TaskAssignment" asp-action="AddTask">Add Task Assignment</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TaskAssignment" asp-action="Index">Task Assignment</a>
                             </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TaskAssignment" asp-action="AddTask">Add Task Assignment</a>
+                                </li>
+                            }
                         }
                     </ul>
                     @if (!User.Identity.IsAuthenticated)

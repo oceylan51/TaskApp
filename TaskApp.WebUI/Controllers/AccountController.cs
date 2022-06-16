@@ -96,7 +96,7 @@ namespace TaskApp.WebUI.Controllers
                     token = code
                 });
                 //email gönderme işlemi
-                await _emailSender.SendEmailAsync(model.Email, "MiniShopApp Confirm Account!", $"Lütfen email adresinizi onaylamak için <a href='https://localhost:5001{url}'>tıklayınız!</a>");
+                await _emailSender.SendEmailAsync(model.Email, "Task App Confirm Account!", $"Lütfen email adresinizi onaylamak için <a href='https://localhost:5001{url}'>tıklayınız!</a>");
                 return RedirectToAction("Login", "Account");
             }
             return View();
